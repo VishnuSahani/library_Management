@@ -1,0 +1,115 @@
+
+
+{% extends 'help.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tag %} class="{{ message.tag}}" {% endif %}> {{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<!---------------------------------------------------------------------------------------->
+<div class="container">
+<div class="row">
+ <div class="col-lg-12 col-md-12">
+                 <div class="card border-0" style="background-color: transparent;">
+                          <div class="card-header h1 bg-info"><center style="color:red;">Student Registration</center>
+                           </div>
+
+
+                           <div class="card-body" style="background-color: transparent;">
+                               <form action="addstudentfunction" method="post">
+                                       {% csrf_token %}
+
+<h3 style="color:red;">
+                                   <div class="form-row">
+                                           <div class="form-group col-md-6">
+
+                                                    {{ form.sid|as_crispy_field }}
+
+
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                   {{ form.studentname|as_crispy_field }}
+
+                                            </div>
+
+                                    </div>
+
+                                       <div class="form-row">
+                                           <div class="form-group col-md-6">
+                                                    {{ form.branch|as_crispy_field }}
+
+
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                   {{ form.email|as_crispy_field }}
+
+                                            </div>
+
+                                    </div>
+
+                                       <div class="form-row">
+                                           <div class="form-group col-md-6">
+                                                    {{ form.gender|as_crispy_field }}
+
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                    {{ form.mobile|as_crispy_field }}
+
+
+                                            </div>
+                                       </div>
+        <div class="form-row">
+                                           <div class="form-group col-md-6">
+                                                    {{ form.year|as_crispy_field }}
+
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+
+
+
+                                            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+<center> <button name="btn" type="submit" class="btn btn-lg btn-info">Submit</button>
+    <a href="{% url 'showstudent' %}" class="btn active bg-danger" ><span >Display All Student</span></a>
+
+</center>
+
+                              </h3> </form>
+
+                           </div>
+
+                 </div>
+
+
+</div>
+</div>
+</div>
+
+
+
+<!---------------------------------------------------------------------->
+
+
+
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'help.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tag %} class="{{ message.tag}}" {% endif %}> {{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+
+<!---------------------------------------------->
+
+
+<div class="container-fluid">
+  <div class="row jumbotron">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <p class="h1 bg-info" align="center">All Student Data </p>
+        </div>
+     <table class="table bg-light table-responsive">
+        <thead class="thead dark">
+        <th>Student Name</th>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Branch</th>
+        <th>Year</th>
+        <th>Gender</th>
+        <th>Mobile</th>
+
+        <th>Edit Data</th>
+        <th>Delete Data</th>
+
+
+        </thead>
+        <tbody>
+         {% for form in form %}
+         <tr>
+             <td>{{form.studentname}}</td>
+             <td>{{form.sid}}</td>
+             <td>{{form.email }}</td>
+               <td>{{form.branch}}</td>
+             <td>{{form.year}}</td>
+             <td>{{form.gender}}</td>
+             <td>{{form.mobile}}</td>
+
+             <td><a href="/studentedit/{{form.id}}">Edit</a></td>
+             <td><a href="studentdelete/{{form.id}}">Delete</a></td>
+         </tr>
+         {% endfor %}
+         <tr>
+
+             <td><br></td>
+         </tr>
+
+        <tr><td></td><td></td><td></td><td></td>
+            <td >
+                <a href="{% url 'addstudent' %}" class="btn active bg-danger" ><span >New Registration</span> </a></td>
+        </tr>
+        </tbody>
+
+    </table>
+    </div>
+
+
+   </div><!--row close-->
+
+
+
+
+</div><!--container close-->
+
+
+
+
+<!---------------------------------------------------------------------->
+
+{% endblock %}

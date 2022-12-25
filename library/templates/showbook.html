@@ -1,0 +1,83 @@
+{% extends 'help.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tag %} class="{{ message.tag}}" {% endif %}> {{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+<!---------------------------------------------->
+
+
+<div class="container">
+  <div class="row jumbotron">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="background-color: transparent;">
+            <div class="card-header"><p class="h1 bg-info" align="center">All Book Data </p></div>
+
+        <div class="card-body">
+     <table class="table bg-light table-responsive">
+        <thead class="thead dark">
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>ISBN No.</th>
+        <th>Publication</th>
+        <th>Language</th>
+        <th>Category</th>
+
+        <th>Edit Data</th>
+        <th>Delete Data</th>
+
+
+        </thead>
+        <tbody>
+         {% for form in form %}
+         <tr>
+             <td>{{form.bookname}}</td>
+             <td>{{form.authorname}}</td>
+             <td>{{form.isbn }}</td>
+               <td>{{form.publication}}</td>
+             <td>{{form.language}}</td>
+             <td>{{form.category}}</td>
+
+             <td><a href="/bookedit1/{{form.id}}">Edit</a></td>
+             <td><a href="bookdelete/{{form.id}}">Delete</a></td>
+         </tr>
+         {% endfor %}
+         <tr>
+
+             <td><br></td>
+         </tr>
+
+        <tr><td></td><td></td>
+            <td colspan="5" align="center">
+                        <a href="{% url 'addbook' %}" class="btn active bg-danger" /><span >Add Book Data</span>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+   </div><!--row close-->
+
+
+
+
+</div><!--container close-->
+
+
+
+
+<!---------------------------------------------------------------------->
+
+{% endblock %}

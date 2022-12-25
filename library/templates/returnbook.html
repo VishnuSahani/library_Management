@@ -1,0 +1,235 @@
+
+
+{% extends 'help.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tag %} class="{{ message.tag}}" {% endif %}> {{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+
+<div class="container">
+<div class="row" >
+     <div class="col-lg-3 col-md-3 ">
+     </div>
+ <div class="col-lg-6 col-md-6 ">
+
+     <div class="card" style="background-color: transparent;">
+         <div class="card-header">
+           <h1 align="center" style="color:white;"> Return Book </h1>
+         </div>
+         <div class="card-body">
+             <form class="form-inline" action="searchstudent" method="post">
+                  {% csrf_token %}
+  <div class="form-group mb-2"><label class="h2" style="color:green;">Search Box</label>
+  </div>
+  <div class="form-group mx-3 mb-2">
+    <input type="text" class="form-control" id="sea" name="searchid" placeholder="Student ID">
+  </div>
+  <button type="submit" class="btn btn-outline-primary btn-lg active mb-2" >Search</button>
+</form>
+         </div>
+
+     </div>
+
+
+</div><!--- column ---->
+
+     <div class="col-lg-3 col-md-3 ">
+     </div>
+</div><!--- row ---->
+</div> <!--- container ---->
+
+<!--------------------------------------------------->
+<br>
+{% if books %}
+<div class="container-fluid">
+  <div class="row jumbotron">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <p class="h1 bg-info" align="center">All Issue Data </p>
+        </div>
+     <table class="table bg-light table-responsive">
+        <thead class="thead dark">
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>ISBN No.</th>
+        <th>Publication</th>
+        <th>Language</th>
+        <th>Category</th>
+        <th>Student ID </th>
+        <th>Student Name</th>
+        <th>Branch</th>
+        <th>Year</th>
+        <th>Mobile</th>
+        <th>Return</th>
+
+
+
+        </thead>
+        <tbody>
+        {% for books in books %}
+         <tr>
+             <td>{{ books.bookname }}</td>
+             <td>{{ books.authorname }}</td>
+             <td>{{ books.isbn }}</td>
+               <td>{{ books.publication }}</td>
+             <td>{{books.language}}</td>
+             <td>{{books.category}}</td>
+             <td>{{ books.sid }}</td>
+             <td>{{ books.studentname }}</td>
+             <td>{{ books.branch }}</td>
+              <td>{{ books.year }}</td>
+             <td>{{ books.mobile }}</td>
+
+             <td><a href="returnbookFun/{{books.isbn}}">Return</a></td>
+
+         </tr>
+ {% endfor %}
+         <tr>
+
+             <td><br></td>
+         </tr>
+
+
+        </tbody>
+
+    </table>
+    </div>
+
+
+   </div><!--row close-->
+
+
+
+
+</div><!--container close-->
+{% endif %}
+
+{% if book %}
+<div class="container">
+    <div class="row ">
+
+        <div class="col-lg-12">
+
+<p align="center">
+
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Save Book After Return
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card">
+                <h6 style="color:black;">
+                <div class="card-header bg-info">
+                    <h1 align="center">Return Book Detail</h1>
+
+                </div><!-- card header--->
+                <div class="card-body">
+                    <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="fn">Student Id</label>
+      <input type="text"  class="form-control" id="sid" placeholder=" Language" value="{{book.sid}}" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ln">Student Name</label>
+      <input type="text" name="category" class="form-control" id="stname" placeholder="Category" value="{{book.studentname}}" >
+    </div>
+                    </div>
+
+                     <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fn">Branch</label>
+      <input type="text"  class="form-control" id="bch" placeholder=" Language" value="{{book.branch}}" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ln">Year</label>
+      <input type="text" name="category" class="form-control" id="yr" placeholder="Category" value="{{book.year}}" >
+    </div>
+                     </div>
+                       <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fn">Issue Date</label>
+      <input type="text"  class="form-control" id="isd" placeholder=" Language" value="{{book.issuedate}}" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ln">Return Date</label>
+      <input type="text"  class="form-control" id="retd" placeholder="Category" value="{{book.returndate}}" >
+    </div>
+                     </div>
+                       <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fn">Fine Charge</label>
+      <input type="text"  class="form-control" id="fin" placeholder=" Fine" value="0" >
+    </div>
+    <div class="form-group col-md-6">
+
+    </div>
+                     </div>
+                    <!---------------------------------------->
+                    <form action="/addbook_Return/{{book.isbn}}" method="post">
+                         {% csrf_token %}
+
+                  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fn">Book Name</label>
+      <input type="text" name="bookname" class="form-control" id="fn" placeholder="Book Name" value="{{book.bookname}}" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ln">Book ISBN No.</label>
+      <input type="text" name="isbn" class="form-control" id="ln" placeholder="ISBN Number " value="{{book.isbn}}" >
+    </div>
+  </div>
+                     <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fn">Author Name</label>
+      <input type="text" name="authorname" class="form-control" id="an" placeholder="Author Name" value="{{book.authorname}}" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ln">Publication</label>
+      <input type="text" name="publication" class="form-control" id="pb" placeholder="Publication" value="{{book.publication}}" >
+    </div>
+  </div>
+                        <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fn">Language</label>
+      <input type="text" name="language" class="form-control" id="lg" placeholder=" Language" value="{{book.language}}" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ln">Category</label>
+      <input type="text" name="category" class="form-control" id="ct" placeholder="Category" value="{{book.category}}" >
+    </div>
+                           </div>
+
+
+
+
+
+
+
+                  <center>  <button class="btn btn-info" type="submit">Save</button></center>
+                </form>
+                    <!----------------------------------------------->
+
+
+                </div><!--- card body---></h6>
+            </div><!---card--->
+
+</div>
+
+
+        </div><!--- col-->
+
+    </div><!---row--->
+
+</div><!-- container --->
+{% endif %}
+
+{% endblock %}

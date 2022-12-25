@@ -1,0 +1,74 @@
+{% extends 'help.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+<!---------------------------------------------->
+
+
+<div class="container-fluid">
+  <div class="row jumbotron">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <p class="h1 bg-info" align="center">All Issue Book Data </p>
+        </div>
+     <table class="table bg-light table-responsive">
+        <thead class="thead dark">
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>ISBN No.</th>
+        <th>Publication</th>
+        <th>Language</th>
+        <th>Category</th>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Branch</th>
+        <th>Mobile No.</th>
+         <th>Issue Date</th>
+        <th>Return Date</th>
+
+
+
+        </thead>
+        <tbody>
+         {% for form in form %}
+         <tr>
+             <td>{{form.bookname}}</td>
+             <td>{{form.authorname}}</td>
+             <td>{{form.isbn }}</td>
+               <td>{{form.publication}}</td>
+             <td>{{form.language}}</td>
+             <td>{{form.category}}</td>
+             <td>{{form.sid}}</td>
+             <td>{{form.studentname}}</td>
+             <td>{{form.branch}}</td>
+             <td>{{form.mobile}}</td>
+             <td>{{form.issuedate}}</td>
+             <td>{{form.returndate}}</td>
+
+         </tr>
+         {% endfor %}
+
+
+
+        </tbody>
+
+    </table>
+    </div>
+
+
+   </div><!--row close-->
+
+
+
+
+</div><!--container close-->
+
+
+
+
+<!---------------------------------------------------------------------->
+
+{% endblock %}

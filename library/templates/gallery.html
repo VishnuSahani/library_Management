@@ -1,0 +1,33 @@
+
+{% extends 'baseIndex.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+ <div class="row">
+    {% for ob1 in ob1 %}
+    <div class="col-lg-4 col-md-4">
+
+     <div class="card">
+
+            <div class="card-body shadow">
+            <img src="{{ob1.g_img.url}}" class="img img-fluid float-center" hspace="10" style="height:200px; " />
+                                <hr><P CLASS="h5" align="center"> Title :- {{ ob1.title }}</P>
+
+            </div>
+
+      </div><br>
+    </div>
+
+    {% endfor %}
+
+
+
+
+   </div><!--row close-->
+
+</div><!--container--->
+
+{% endblock %}

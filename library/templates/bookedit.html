@@ -1,0 +1,116 @@
+{% extends 'help.html' %}
+<!---------------------------------------------------------------------->
+
+{% block content %}
+
+
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+
+    <div class="card">
+        <div class="card-header bg-info" style="font-size:40px;" align="center">
+            Update Data
+        </div>
+
+
+        <div class="card-body jumbotron" align="center">
+
+<form action="/bookupdate/{{data.id}}" method="post">
+
+    {% csrf_token %}
+       <div class="row">
+           <div class="col-lg-12">
+               <table>
+        <tr>
+            <td>    Book Name
+</td>
+            <td>    <input type="text" name="bookname" id="id_eid" required maxlength="20" value="{{data.bookname}}">
+</td>
+
+        </tr>
+
+
+           <tr>
+            <td>   Author Name
+</td>
+            <td>    <input type="text" name="authorname" id="id_name" required maxlength="100" value="{{data.authorname}}">
+</td>
+
+        </tr>
+
+               <tr>
+            <td>   ISBN No.
+</td>
+            <td>    <input type="number" name="isbn" id="id_gender" required maxlength="100" value="{{data.isbn}}">
+</td>
+
+        </tr>
+
+
+           <tr>
+            <td>     Publication
+</td>
+            <td>    <input type="text" name="publication" id="id_age" required maxlength="20" value="{{data.publication}}">
+</td>
+
+        </tr>
+
+
+           <tr>
+            <td>     Language
+</td>
+            <td>    <input type="text" name="language" id="idlg" required maxlength="20" value="{{data.language}}">
+</td>
+
+        </tr>
+
+
+           <tr>
+            <td>     Category
+</td>
+            <td>    <input type="text" name="category" id="idct" required maxlength="20" value="{{data.category}}">
+</td>
+
+        </tr>
+
+
+
+
+        <tr>
+        <td> <br></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center">    <input type="submit" name="btn" value="Update">
+</td>
+
+        </tr>
+
+
+    </table>
+
+
+
+           </div>
+
+       </div>
+
+
+
+</form>
+        </div>
+    </div>
+</div>
+
+
+   </div><!--row close-->
+</div><!--container close-->
+
+
+
+
+
+
+{% endblock %}
+
